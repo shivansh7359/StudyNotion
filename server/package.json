@@ -10,7 +10,7 @@
 	"keywords": [
 		"studynotion-backend"
 	],
-	"author": "Shivansh Singhal",
+	"author": "Shivansh-Singhal",
 	"license": "ISC",
 	"dependencies": {
 		"bcrypt": "^5.1.0",
