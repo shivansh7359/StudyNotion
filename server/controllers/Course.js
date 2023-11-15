@@ -26,13 +26,6 @@ exports.createCourse = async (req, res) => {
     // Get thumbnail image from request files
     const thumbnail = req.files.thumbnailImage
 
-    // Convert the tag and instructions from stringified Array to Array
-    // const tag = JSON.parse(_tag)
-    // const instructions = JSON.parse(_instructions)
-
-    // console.log("tag", tag)
-    // console.log("instructions", instructions)
-
     // Check if any of the required fields are missing
     if (
       !courseName ||
@@ -307,13 +300,6 @@ exports.getCourseDetails = async (req, res) => {
       })
     }
 
-    // if (courseDetails.status === "Draft") {
-    //   return res.status(403).json({
-    //     success: false,
-    //     message: `Accessing a draft course is forbidden`,
-    //   });
-    // }
-
     let totalDurationInSeconds = 0
     courseDetails.courseContent.forEach((content) => {
       content.subSection.forEach((subSection) => {
@@ -374,13 +360,6 @@ exports.getFullCourseDetails = async (req, res) => {
         message: `Could not find course with id: ${courseId}`,
       })
     }
-
-    // if (courseDetails.status === "Draft") {
-    //   return res.status(403).json({
-    //     success: false,
-    //     message: `Accessing a draft course is forbidden`,
-    //   });
-    // }
 
     let totalDurationInSeconds = 0
     courseDetails.courseContent.forEach((content) => {
