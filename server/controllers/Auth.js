@@ -12,7 +12,7 @@ require("dotenv").config()
 
 exports.signup = async (req, res) => {
   try {
-    // Destructure fields from the request body
+    
     const {
       firstName,
       lastName,
@@ -23,7 +23,7 @@ exports.signup = async (req, res) => {
       contactNumber,
       otp,
     } = req.body
-    // Check if All Details are there or not
+    
     if (
       !firstName ||
       !lastName ||
@@ -112,10 +112,10 @@ exports.signup = async (req, res) => {
   }
 }
 
-// Login controller for authenticating users
+// Login controller 
 exports.login = async (req, res) => {
   try {
-    // Get email and password from request body
+    
     const { email, password } = req.body
 
     // Check if email or password is missing
@@ -130,9 +130,8 @@ exports.login = async (req, res) => {
     // Find user with provided email
     const user = await User.findOne({ email }).populate("additionalDetails")
 
-    // If user not found with provided email
     if (!user) {
-      // Return 401 Unauthorized status code with error message
+      
       return res.status(401).json({
         success: false,
         message: `User is not Registered with Us Please SignUp to Continue`,
@@ -190,7 +189,6 @@ exports.sendotp = async (req, res) => {
 
     // If user found with provided email
     if (checkUserPresent) {
-      // Return 401 Unauthorized status code with error message
       return res.status(401).json({
         success: false,
         message: `User is Already Registered`,
@@ -228,10 +226,10 @@ exports.sendotp = async (req, res) => {
 // Controller for Changing Password
 exports.changePassword = async (req, res) => {
   try {
-    // Get user data from req.user
+    
     const userDetails = await User.findById(req.user.id)
 
-    // Get old password, new password, and confirm new password from req.body
+    
     const { oldPassword, newPassword } = req.body
 
     // Validate old password
@@ -280,7 +278,6 @@ exports.changePassword = async (req, res) => {
       .status(200)
       .json({ success: true, message: "Password updated successfully" })
   } catch (error) {
-    // If there's an error updating the password, log the error and return a 500 (Internal Server Error) error
     console.error("Error occurred while updating password:", error)
     return res.status(500).json({
       success: false,
